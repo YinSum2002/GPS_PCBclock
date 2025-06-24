@@ -11,7 +11,7 @@ TFT_eSPI tft = TFT_eSPI();
 String nmeaSentence = "";
 #define SCREEN_WIDTH 320
 #define SCREEN_HEIGHT 240
-#define FONT_SIZE 2
+#define FONT_SIZE 4
 
 void setup() {
   Serial.begin(115200);
@@ -59,13 +59,13 @@ void parseGPGGA(const String& sentence) {
       String minute = utc.substring(2, 4);
       String second = utc.substring(4, 6);
 
-      String utcTime = "UTC Time: " + hour + ":" + minute + ":" + second;
+      String utcTime = hour + ":" + minute + ":" + second;
       Serial.println(utcTime);
 
       // Display on TFT
       tft.fillScreen(TFT_WHITE);
       tft.setTextColor(TFT_BLACK, TFT_WHITE);
-      tft.drawCentreString("GPS Clock", SCREEN_WIDTH / 2, 30, FONT_SIZE);
+      //tft.drawCentreString("GPS Clock", SCREEN_WIDTH / 2, 30, FONT_SIZE);
       tft.drawCentreString(utcTime, SCREEN_WIDTH / 2, 80, FONT_SIZE);
     }
   }
